@@ -1,0 +1,47 @@
+{
+    "folders": [
+        {"path": "app"},
+        {"path": "backend"},
+        {"path": "data"},
+    ],
+    "tasks": {
+        "version": "2.0.0",
+        "tasks": [
+            {
+                "label": "run app",
+                "command": "npm start",
+                "type": "shell",
+                "options": {
+                    "cwd": "${workspaceFolder:app}"
+                },
+                "presentation": {
+                    "panel": "shared",
+                    "group": "dev",
+                },
+                "group": "build"
+            },
+            {
+                "label": "run backend",
+                "command": "uv run uvicorn backend:app --reload",
+                "type": "shell",
+                "options": {
+                    "cwd": "${workspaceFolder:backend}"
+                },
+                "presentation": {
+                    "panel": "shared",
+                    "group": "dev",
+                },
+                "group": "build"
+            },
+            {
+                "label": "dev",
+                "dependsOn":[
+                    "run app",
+                    "run backend",
+                ],
+                "dependsOrder": "parallel",
+                "group": "build"
+            }
+        ]
+    }
+}
