@@ -1,0 +1,14 @@
+# $schema: ../$schema/Device.yaml
+name: ThinClient
+description: Dell Wyse 5070 ThinClient
+flags: 
+- Intel J4105
+- 4GB DDR4
+- 16GB eMMC
+- WiFi
+- Fuß
+- PSU
+image: img-7165-min-png.avif
+attributes:
+  purchase_date: 24. Januar 2024
+  purchase_price: 69,99 €

@@ -26,7 +26,6 @@ import { TablerIconComponent } from "@tabler/icons-angular";
 })
 export class NavbarComponent {
     links = [
-        { icon: "home", label: "Home", route: "/" },
         { icon: "device-3d-camera", label: "Devices", route: "/devices" },
         { icon: "antenna-bars-5", label: "Services", route: "/services" },
     ];

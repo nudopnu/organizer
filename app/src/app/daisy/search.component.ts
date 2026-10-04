@@ -6,7 +6,7 @@ import { TablerIconComponent } from "@tabler/icons-angular";
     selector: "org-search",
     template: `
     <label class="input w-full">
-        <tabler-icon icon="search" [size]="20"></tabler-icon>
+        <tabler-icon icon="search" [size]="20"/>
         <input type="search" [(ngModel)]="query" [placeholder]="placeholder()">
     </label>
     `,

@@ -1,0 +1,17 @@
+# $schema: ../$schema/Device.yaml
+name: YottaMaster
+description: Yottamaster Aluminium 5 Bay USB C Festplattengehäuse
+flags:
+- Externe SATA Festplatte Gehäuse für 3,5" /2,5" Festplatten
+- 5 x 22TB Unterstützung
+- Leise 80mm Lüfter
+image: yotta-master.webp
+attributes:
+  purchase_price: 165,99 €
+  purchase_date: 1. Juli 2026
+  product_number: PS500RU3
+  outputs: USB Type-B
+  size: 252 x 136 x 168.5 mm
+  manufacturer_website: 
+    label: yottamaster.com
+    link: https://yottamaster.com/products/yottamaster-aluminum-5-bay-usb3-1-type-c-external-hard-drive-enclosure-for-3-5-2-5-inch-sata-hdd-ssd-support-5-x-16tb-mac-style-direct-attached-storage-das-ps500c3?srsltid=AfmBOorCH4qW2Auxv_yZfiIZHqjCnE7A1WcewqQ-58usagVBz8m_nwEb"

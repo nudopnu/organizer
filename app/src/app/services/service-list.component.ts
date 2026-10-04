@@ -3,10 +3,10 @@ import { SearchAndNewComponent } from "../components/search-and-new.component";
 
 @Component({
     template: `
-    <org-san resource="Device" [(query)]="query"/>
+    <org-san resource="Service" [(query)]="query"/>
     `,
     imports: [SearchAndNewComponent],
 })
-export class DeviceListComponent {
+export class ServiceListComponent {
     query = model("");
 }

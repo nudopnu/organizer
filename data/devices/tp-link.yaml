@@ -1,0 +1,17 @@
+# $schema: ../$schema/Device.yaml
+name: TP-Link
+description: TP-Link Archer TX20U Plus WLAN Stick
+flags:
+- WiFi 6 AX1800 Dual Band
+- USB 3.0, MU-MIMO
+- Antennen mit hoher Verstärkung
+- WPA3-Verschlüsselung
+image: ASSET_MP_137623988.webp
+attributes:
+  purchase_price: 25,99 €
+  purchase_date: 14. September 2024
+  product_number: Archer TX20U Plus
+  wlan_standard: 802.11ax
+  manufacturer_website:
+    label: tp-link.com
+    link: https://www.tp-link.com/de/home-networking/adapter/archer-tx20u-plus/
