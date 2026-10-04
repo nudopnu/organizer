@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "gen:api": "openapi-typescript ../backend/generated/openapi.yaml -o src/models/api.ts --root-types --root-types-no-schema-prefix"
   },
   "private": true,
   "packageManager": "bun@1.4.2",
@@ -19,6 +20,7 @@
     "@angular/router": "^22.2.0",
     "@tabler/icons-angular": "^3.48.0",
     "daisyui": "^5.7.47",
+    "openapi-typescript": "^7.13.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },

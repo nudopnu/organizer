@@ -1,0 +1,12 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: Action.yaml
+type: object
+properties:
+  delay:
+    type: integer
+    description: Delay in ms to wait before executing this action
+  type:
+    type: string
+    description: Discriminator property for Action.
+required:
+  - type

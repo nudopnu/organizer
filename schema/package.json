@@ -1,0 +1,16 @@
+{
+  "name": "schema",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "@typespec/compiler": "^1.16.0",
+    "@typespec/http": "^1.16.0",
+    "@typespec/json-schema": "^1.16.0",
+    "@typespec/openapi3": "^1.16.0"
+  },
+  "scripts": {
+    "build": "tsp compile . && cd ../backend && uv run datamodel-codegen --input generated/openapi.yaml --input-file-type openapi --output src/backend/generated/models.py --output-model-type pydantic_v2.BaseModel --target-python-version 3.12 --use-standard-collections --use-union-operator --use-annotated --field-constraints --collapse-root-models --enum-field-as-literal one --use-field-description --use-schema-description --use-attribute-docstrings && cd ../app && bun run gen:api"
+  },
+  "packageManager": "npm@12.2.0+sha512.66c2632a94e796649738b2d7894d710c2cc2e1696893823066687f6b0d8a52e5f2b54eeaeaa32ffdc513ecca1e49ff794a5c2ec3f9515d879f1b3182b291cf35"
+}

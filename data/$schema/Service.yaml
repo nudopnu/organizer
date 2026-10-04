@@ -1,0 +1,25 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: Service.yaml
+type: object
+properties:
+  name:
+    type: string
+  description:
+    type: string
+  checks:
+    $ref: Checklist.yaml
+  actions:
+    $ref: "#/$defs/RecordArrayAction"
+required:
+  - name
+  - description
+  - checks
+  - actions
+$defs:
+  RecordArrayAction:
+    type: object
+    properties: {}
+    unevaluatedProperties:
+      type: array
+      items:
+        $ref: Action.yaml

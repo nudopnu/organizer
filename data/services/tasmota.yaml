@@ -1,0 +1,21 @@
+# $schema: ../$schema/Service.yaml
+name: Tasmota
+description: Power supply for homelab server
+checks:
+  interval: 15
+  up:
+    type: JSON_FROM_HTTP
+    url: http://192.168.2.216/cm?cmnd=Status%208
+    method: GET
+    path: StatusSNS.ENERGY.Power
+    operation: ne
+    value: 0
+actions:
+  reboot:
+  - type: HTTP
+    method: GET
+    url: http://192.168.2.216/cm?cmnd=Power%20off
+  - type: HTTP
+    delay: 1000
+    method: GET
+    url: http://192.168.2.216/cm?cmnd=Power%20on

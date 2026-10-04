@@ -1,0 +1,25 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: HttpGetAction.yaml
+type: object
+properties:
+  type:
+    type: string
+    const: HTTP
+  method:
+    anyOf:
+      - type: string
+        const: GET
+      - type: string
+        const: POST
+      - type: string
+        const: PUT
+      - type: string
+        const: DELETE
+  url:
+    type: string
+required:
+  - type
+  - method
+  - url
+allOf:
+  - $ref: Action.yaml

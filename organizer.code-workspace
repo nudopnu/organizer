@@ -2,6 +2,7 @@
     "folders": [
         {"path": "app"},
         {"path": "backend"},
+        {"path": "schema"},
         {"path": "data"},
     ],
     "tasks": {

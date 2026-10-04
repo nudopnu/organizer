@@ -1,0 +1,9 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: Assertion.yaml
+type: object
+properties:
+  type:
+    type: string
+    description: Discriminator property for Assertion.
+required:
+  - type

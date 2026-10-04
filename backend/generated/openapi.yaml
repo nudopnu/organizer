@@ -1,0 +1,195 @@
+openapi: 3.0.0
+info:
+  title: Organizer API
+  version: 0.0.0
+tags: []
+paths:
+  /devices:
+    get:
+      operationId: Devices_list
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Device'
+  /services:
+    get:
+      operationId: Services_list
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServiceSummary'
+components:
+  schemas:
+    Action:
+      type: object
+      required:
+        - type
+      properties:
+        delay:
+          type: integer
+          description: Delay in ms to wait before executing this action
+        type:
+          type: string
+          description: Discriminator property for Action.
+      discriminator:
+        propertyName: type
+        mapping:
+          HTTP: '#/components/schemas/HttpGetAction'
+    Assertion:
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          description: Discriminator property for Assertion.
+      discriminator:
+        propertyName: type
+        mapping:
+          JSON_FROM_HTTP: '#/components/schemas/JsonFromHttpAssertion'
+    Checklist:
+      type: object
+      required:
+        - interval
+        - up
+      properties:
+        interval:
+          type: integer
+        up:
+          $ref: '#/components/schemas/Assertion'
+        startings:
+          $ref: '#/components/schemas/Assertion'
+    Device:
+      type: object
+      required:
+        - name
+        - description
+        - flags
+        - image
+        - attributes
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        flags:
+          type: array
+          items:
+            type: string
+        image:
+          type: string
+        attributes:
+          type: object
+          additionalProperties: {}
+    HttpGetAction:
+      type: object
+      required:
+        - type
+        - method
+        - url
+      properties:
+        type:
+          type: string
+          enum:
+            - HTTP
+        method:
+          type: string
+          enum:
+            - GET
+            - POST
+            - PUT
+            - DELETE
+        url:
+          type: string
+      allOf:
+        - $ref: '#/components/schemas/Action'
+    JsonFromHttpAssertion:
+      type: object
+      required:
+        - type
+        - url
+        - method
+        - path
+        - operation
+        - value
+      properties:
+        type:
+          type: string
+          enum:
+            - JSON_FROM_HTTP
+        url:
+          type: string
+        method:
+          type: string
+          enum:
+            - GET
+            - POST
+            - PUT
+            - DELETE
+        path:
+          type: string
+        operation:
+          type: string
+          enum:
+            - ne
+            - eq
+        value: {}
+      allOf:
+        - $ref: '#/components/schemas/Assertion'
+    Service:
+      type: object
+      required:
+        - name
+        - description
+        - checks
+        - actions
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        checks:
+          $ref: '#/components/schemas/Checklist'
+        actions:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/Action'
+    ServiceSummary:
+      type: object
+      required:
+        - id
+        - name
+        - description
+        - actions
+        - status
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        actions:
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+          enum:
+            - up
+            - starting
+            - down
