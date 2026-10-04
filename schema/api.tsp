@@ -4,6 +4,7 @@ import "./device.tsp";
 using Http;
 
 @service(#{title: "Organizer API"})
+@route("/api/v1")
 namespace Organizer;
 
 model ServiceSummary {

@@ -15,21 +15,27 @@ cfg = Settings()
 class ServiceMonitor:
 
     def __init__(self):
-        services_path = cfg.DATA_PATH / "services"
+        self.services_path = cfg.DATA_PATH / "services"
+        self.threads: dict[str, Thread] = {}
         self.services: dict[str, Service] = {}
         self.status: dict[str, ServiceSummary] = {}
-        self.threads: dict[str, Thread] = {}
-        for services_path in services_path.glob("*.yaml"):
-            content = services_path.read_text(encoding="utf8")
-            raw = yaml.safe_load(content)
-            service = Service.model_validate(raw)
-
+        for service in self.load_services():
             id = str(uuid.uuid4())
             self.services[id] = service
 
             thread = Thread(target=lambda _id=id: self.check(_id), daemon=True)
             thread.start()
             self.threads[id] = thread
+
+    def load_services(self):
+        services: list[Service] = []
+        for service_path in self.services_path.glob("*.yaml"):
+            content = service_path.read_text(encoding="utf8")
+            raw = yaml.safe_load(content)
+            service = Service.model_validate(raw)
+            services.append(service)
+        return services
+
 
     def get_status(self):
         return [status for status in self.status.values()]

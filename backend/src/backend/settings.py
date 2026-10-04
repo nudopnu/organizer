@@ -6,3 +6,4 @@ from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
     DATA_PATH: Path = Field("../data")
+    API_VERSION: str = "v1"

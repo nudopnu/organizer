@@ -4,7 +4,7 @@ info:
   version: 0.0.0
 tags: []
 paths:
-  /devices:
+  /api/v1/devices:
     get:
       operationId: Devices_list
       parameters: []
@@ -17,7 +17,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Device'
-  /services:
+  /api/v1/services:
     get:
       operationId: Services_list
       parameters: []
