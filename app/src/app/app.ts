@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { NavigationEnd, NavigationSkipped, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
 import { NavbarComponent } from './navbar.component';
 import { TablerIconComponent } from '@tabler/icons-angular';
@@ -13,9 +13,10 @@ import { TablerIconComponent } from '@tabler/icons-angular';
     <input id="my-drawer-3" type="checkbox" class="drawer-toggle"
       [checked]="drawerOpen()" (change)="drawerOpen.set($any($event.target).checked)" />
     <div class="drawer-content p-4">
-      <!-- Page content here -->
+      <!-- Page content -->
       <router-outlet/>
 
+      <!-- hamburger menu -->
       <div class="absolute left-0 bottom-0 w-full p-4">
         <label for="my-drawer-3" class="btn btn-circle drawer-button lg:hidden">
           <tabler-icon icon="menu-2"></tabler-icon>
@@ -39,7 +40,7 @@ export class App {
   constructor() {
     inject(Router)
       .events.pipe(
-        filter((e) => e instanceof NavigationEnd),
+        filter((e) => e instanceof NavigationEnd || e instanceof NavigationSkipped),
         takeUntilDestroyed(),
       )
       .subscribe(() => this.drawerOpen.set(false));
